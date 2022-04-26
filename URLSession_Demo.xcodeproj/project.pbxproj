@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C47F8FF28185EC400C605BA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C47F8FE28185EC400C605BA /* Model.swift */; };
 		1C8B67092813F87900DFFF3E /* URLSession_DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B67082813F87900DFFF3E /* URLSession_DemoApp.swift */; };
 		1C8B670B2813F87900DFFF3E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C8B670A2813F87900DFFF3E /* ContentView.swift */; };
 		1C8B670D2813F87B00DFFF3E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C8B670C2813F87B00DFFF3E /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C47F8FE28185EC400C605BA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		1C8B67052813F87900DFFF3E /* URLSession_Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = URLSession_Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C8B67082813F87900DFFF3E /* URLSession_DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession_DemoApp.swift; sourceTree = "<group>"; };
 		1C8B670A2813F87900DFFF3E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				1C8B67082813F87900DFFF3E /* URLSession_DemoApp.swift */,
 				1C8B670A2813F87900DFFF3E /* ContentView.swift */,
+				1C47F8FE28185EC400C605BA /* Model.swift */,
 				1C8B670C2813F87B00DFFF3E /* Assets.xcassets */,
 				1C8B670E2813F87B00DFFF3E /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C47F8FF28185EC400C605BA /* Model.swift in Sources */,
 				1C8B670B2813F87900DFFF3E /* ContentView.swift in Sources */,
 				1C8B67092813F87900DFFF3E /* URLSession_DemoApp.swift in Sources */,
 			);
