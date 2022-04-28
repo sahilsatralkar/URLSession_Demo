@@ -8,10 +8,10 @@
 import Foundation
 
 struct Response : Codable {
-    var result : [Model]
+    var results : [Result]
 }
 
-struct Model : Codable, Identifiable {
+struct Result : Codable {
     var id : Int
     var name : String
     var email : String
