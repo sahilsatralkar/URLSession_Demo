@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct Response : Codable {
+    var result : [Model]
+}
+
 struct Model : Codable, Identifiable {
     var id : Int
     var name : String
@@ -14,26 +18,4 @@ struct Model : Codable, Identifiable {
     var gender : String
     var status : String
     
-    func fetch() {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "gorest.co.in"
-        components.path = "/public/v2/users"
-        
-        
-        guard let url = components.url else {
-            preconditionFailure("Failed to construct URL")
-        }
-        
-//        let task = URLSession.shared.dataTask(with: url) {
-//            data, response, error in
-//
-//            DispatchQueue.main.async {
-//                if let data = data {
-//                    let model = [Model]
-//
-//                }
-//            }
-//        }
-    }
 }
