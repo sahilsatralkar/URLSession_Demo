@@ -12,12 +12,13 @@ struct ContentView: View {
     @State private var results = [Result]()
     
     var body: some View {
-        Section("sdf"){
-            List(results, id: \.name){ result in
+        Section("Results"){
+            List(results, id: \.id){ result in
                 VStack (alignment : .leading) {
                     Text (result.name)
                         .font(.headline)
                     Text(result.email)
+                    Text(String(result.id))
                 }
             }
             .task {
@@ -39,9 +40,9 @@ struct ContentView: View {
         print(url.absoluteString)
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            //
-            if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-                self.results = decodedResponse.results
+            
+            if let decodedResponse = try? JSONDecoder().decode([Result].self, from: data) {
+                self.results = decodedResponse
                 print("Results fetched")
             }
                 
