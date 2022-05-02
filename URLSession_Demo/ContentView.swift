@@ -15,13 +15,14 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-                List(results, id: \.name ){ result in
-                    //Add for each
+            List {
+                //Add for each
+                ForEach(results, id: \.name ){ result in
                     
                     
                     
                     
-                    NavigationLink(destination: EditUserDetailsView())
+                    NavigationLink(destination: EditUserDetailsView(user: result))
                     {
                         VStack (alignment : .leading) {
                             Text (result.name)
@@ -31,32 +32,35 @@ struct ContentView: View {
                         }
                     }
                 }
-                .task {
-                    await loadData()
-                }
+                .onDelete(perform: delete)
+            }
+            .task {
+                await loadData()
+            }
             
-                .toolbar {
-                    ToolbarItem {
-                        Button {
-                            showAddUser.toggle()
-                        } label: {
-                            Image(systemName: "plus")
-                        }
-                        
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        showAddUser.toggle()
+                    } label: {
+                        Image(systemName: "plus")
                     }
+                    
                 }
-                .sheet(isPresented: $showAddUser) {
-                    AddNewUserView()
-                }
-                .navigationBarTitle("Results")
+            }
+            .sheet(isPresented: $showAddUser) {
+                AddNewUserView()
+            }
+            .navigationBarTitle("Results")
         }
-            
+        
         
     }
     func delete(at offsets: IndexSet) {
-            //users.remove(atOffsets: offsets)
+        //users.remove(atOffsets: offsets)
+        print("yoyoyoyoyooy")
         
-        }
+    }
     
     func loadData() async {
         var urlComponents = URLComponents()

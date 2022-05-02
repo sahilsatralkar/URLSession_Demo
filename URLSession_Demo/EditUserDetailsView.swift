@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct EditUserDetailsView: View {
+    
+    var user : Result
+    
     var body: some View {
-        Text("Edit user details view")
+        VStack {
+            Text("Name: \(user.name)")
+        }
     }
 }
 
 struct EditUserDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        EditUserDetailsView()
+        EditUserDetailsView(user: Result(id: 1, name: "", email: "", gender: "", status: ""))
     }
 }
