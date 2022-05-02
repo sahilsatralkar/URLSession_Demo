@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Response : Codable {
-    var results : [Result]
-}
+//struct Response : Codable {
+//    var results : [Result]
+//}
 
 struct Result : Codable {
     var id : Int

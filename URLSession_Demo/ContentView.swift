@@ -11,21 +11,52 @@ struct ContentView: View {
     
     @State private var results = [Result]()
     
+    @State private var showAddUser : Bool = false
+    
     var body: some View {
-        Section("Results"){
-            List(results, id: \.id){ result in
-                VStack (alignment : .leading) {
-                    Text (result.name)
-                        .font(.headline)
-                    Text(result.email)
-                    Text(String(result.id))
+        NavigationView {
+                List(results, id: \.name ){ result in
+                    //Add for each
+                    
+                    
+                    
+                    
+                    NavigationLink(destination: EditUserDetailsView())
+                    {
+                        VStack (alignment : .leading) {
+                            Text (result.name)
+                                .font(.headline)
+                            Text(String(result.id))
+                            Text(result.email)
+                        }
+                    }
                 }
-            }
-            .task {
-                await loadData()
-            }
+                .task {
+                    await loadData()
+                }
+            
+                .toolbar {
+                    ToolbarItem {
+                        Button {
+                            showAddUser.toggle()
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                        
+                    }
+                }
+                .sheet(isPresented: $showAddUser) {
+                    AddNewUserView()
+                }
+                .navigationBarTitle("Results")
         }
+            
+        
     }
+    func delete(at offsets: IndexSet) {
+            //users.remove(atOffsets: offsets)
+        
+        }
     
     func loadData() async {
         var urlComponents = URLComponents()
@@ -45,7 +76,6 @@ struct ContentView: View {
                 self.results = decodedResponse
                 print("Results fetched")
             }
-                
         } catch {
             print("Invalid data from url")
         }
