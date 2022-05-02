@@ -17,6 +17,12 @@ enum Status : String, CaseIterable {
     case inactive = "inactive"
 }
 
+extension String {
+    var isValidEmail: Bool {
+        NSPredicate(format: "SELF MATCHES %@", "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}").evaluate(with: self)
+    }
+}
+
 struct AddNewUserView: View {
     @State var name : String = ""
     @State var email : String = ""
@@ -53,7 +59,7 @@ struct AddNewUserView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button {
-                        //toDo
+                        save()
                     } label: {
                         Text("Save")
                     }
@@ -69,6 +75,20 @@ struct AddNewUserView: View {
                 }
             }
         }
+    }
+    
+    func save() {
+        if !self.name.isEmpty && self.email.isValidEmail {
+            let newUser = User(name: self.name, email: self.email, gender: self.genderData[genderDataSelected], status: self.statusData[statusDataSelected])
+            
+            print("User is saved!!")
+            
+        }else {
+            print("User is invalid")
+        }
+        self.presentationMode.wrappedValue.dismiss()
+        
+        
     }
 }
 

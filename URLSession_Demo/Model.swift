@@ -19,3 +19,11 @@ struct Result : Codable {
     var status : String
     
 }
+
+struct User : Codable {
+    var name : String
+    var email : String
+    var gender : String
+    var status : String
+    
+}

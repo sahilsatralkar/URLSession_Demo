@@ -7,22 +7,20 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct GetUserView: View {
     
     @State private var results = [Result]()
     
     @State private var showAddUser : Bool = false
+    
+
     
     var body: some View {
         NavigationView {
             List {
                 //Add for each
                 ForEach(results, id: \.name ){ result in
-                    
-                    
-                    
-                    
-                    NavigationLink(destination: EditUserDetailsView(user: result))
+                    NavigationLink(destination: EditUserDetailsView( name: result.name, email: result.email, id: result.id))
                     {
                         VStack (alignment : .leading) {
                             Text (result.name)
@@ -88,6 +86,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        GetUserView()
     }
 }
