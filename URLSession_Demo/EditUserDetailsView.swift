@@ -54,6 +54,8 @@ struct EditUserDetailsView: View {
     }
     func edit() {
         //ToDo
+        
+        
     }
 }
 
