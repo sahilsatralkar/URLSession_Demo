@@ -81,7 +81,61 @@ struct AddNewUserView: View {
         if !self.name.isEmpty && self.email.isValidEmail {
             let newUser = User(name: self.name, email: self.email, gender: self.genderData[genderDataSelected], status: self.statusData[statusDataSelected])
             
-            print("User is saved!!")
+        //
+            guard let jsonData = try? JSONEncoder().encode(newUser) else {
+                print("Error: Unable to convert model data to JSON")
+                return
+            }
+            
+            var urlComponents = URLComponents()
+            urlComponents.scheme = Constants.scheme
+            urlComponents.host = Constants.host
+            urlComponents.path = Constants.path
+            
+            guard let url = urlComponents.url else {
+                print("URL is invalid for post request")
+                return
+            }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            //request.setValue("Authorization", forHTTPHeaderField: Constants.API_Key)
+            
+            request.httpBody = jsonData
+            
+            URLSession.shared.dataTask(with: request) {
+                data, response, error in
+                
+                
+                guard error == nil else {
+                    print(error)
+                    print("Error: error calling POST")
+                    return
+                }
+                
+                guard let data = data else {
+                    print("Error did not receive data")
+                    return
+                }
+                guard let response = response as? HTTPURLResponse, (000 ..< 10000) ~= response.statusCode else {
+                    print("Error: HTTP request failed lksdlakjsd;lak")
+                    return
+                }
+                
+                do {
+                    guard let jsonResponse = try JSONSerialization.jsonObject(with: data) as? Result else {
+                        print("UNable to convert to JSON object")
+                        return
+                    }
+                    
+                } catch {
+                    print("Error converting to JSON object")
+                    return
+                }
+
+            }.resume()
             
         }else {
             print("User is invalid")
