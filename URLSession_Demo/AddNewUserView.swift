@@ -101,7 +101,7 @@ struct AddNewUserView: View {
             request.httpMethod = "POST"
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.setValue("application/json", forHTTPHeaderField: "Accept")
-            //request.setValue("Authorization", forHTTPHeaderField: Constants.API_Key)
+            request.setValue("Bearer \(Constants.API_Key)", forHTTPHeaderField: "Authorization")
             
             request.httpBody = jsonData
             
@@ -119,10 +119,13 @@ struct AddNewUserView: View {
                     print("Error did not receive data")
                     return
                 }
-                guard let response = response as? HTTPURLResponse, (000 ..< 10000) ~= response.statusCode else {
+                //guard let response = response as? HTTPURLResponse, (000 ..< 10000) ~= response.statusCode else {
+                guard let response = response as? HTTPURLResponse else {
+
                     print("Error: HTTP request failed lksdlakjsd;lak")
                     return
                 }
+                print("status code:\(response.statusCode)")
                 
                 do {
                     guard let jsonResponse = try JSONSerialization.jsonObject(with: data) as? Result else {
